@@ -12,9 +12,9 @@ import ThreadPage from './domain/Forums/ThreadPage';
 import SidebarWithHeader from "./components/Heading/Heading";
 import Layout from "./domain/Profile/Layout";
 import LayoutS from "./domain/Search/LayoutS";
-import ListScrimmages from "./domain/Scrimmages/ListScrimmages";
+// import ListScrimmages from "./domain/Scrimmages/ListScrimmages";
 import CreateScrimmage from './domain/Scrimmages/CreateScrimmage'
-import ScrimLayout from "./domain/Dashboard/Scrimmage/ScrimLayout";
+// import ScrimLayout from "./domain/Dashboard/Scrimmage/ScrimLayout";
 
 
 function App() {
@@ -44,12 +44,12 @@ function App() {
           </Route>
           <Route exact path="/scrims">
             <SidebarWithHeader>
-              <ListScrimmages/>
+              {/* <ListScrimmages/> */}
             </SidebarWithHeader>
           </Route>
           <Route exact path="/scimmage/:id">
             <SidebarWithHeader>
-              <ScrimLayout/>
+              {/* <ScrimLayout/> */}
             </SidebarWithHeader>
           </Route>
           <Route exact path="/scrims/create">

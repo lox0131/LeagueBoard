@@ -18,8 +18,8 @@ const FollowButton: React.FC<Props> = ({ user }) => {
   useEffect(() => {
     getUserNameBySummonerName(user.name).then((res) => {
       console.log(res)
-      setFriendId(res.userid);
-      amFollowing(myUser.id, res.userid).then((res) => {
+      setFriendId(res?.userid);
+      amFollowing(myUser.id, res?.userid).then((res) => {
         setIsFollowing(res);
       });
     });
