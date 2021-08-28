@@ -8,15 +8,9 @@ import ThreadPage from "./domain/Forums/ThreadPage";
 import SidebarWithHeader from "./components/Heading/Heading";
 import Layout from "./domain/Profile/Layout";
 import LayoutS from "./domain/Search/LayoutS";
-<<<<<<< HEAD
 import ScrimPage from "./domain/Scrims/ScrimPage";
 import CreateScrim from "./domain/Scrims/CreateScrim";
 import ScrimCard from "./domain/Scrims/ScrimCard";
-=======
-// import ListScrimmages from "./domain/Scrimmages/ListScrimmages";
-import CreateScrimmage from './domain/Scrimmages/CreateScrimmage'
-// import ScrimLayout from "./domain/Dashboard/Scrimmage/ScrimLayout";
->>>>>>> b38397f7e070ca34472e4eb6268294b45d416ae1
 
 //import ListScrimmages from "./domain/Scrimmages/ListScrimmages";
 // import CreateScrimmage from './domain/Scrimmages/CreateScrimmage'
