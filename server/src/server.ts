@@ -15,7 +15,6 @@ var app = express();
 
 const corsOptions = {
   exposedHeaders: "Authorization",
-  origin: 'https://hungry-bardeen-a12c9b.netlify.app'
 };
 
 app.use(cors(corsOptions));
@@ -26,7 +25,7 @@ app.use(router);
 app.use(errorHandler);
 
 (async () => {
-  await sequelize.sync().then(() => {
+  await sequelize.sync({alter: true}).then(() => {
     Region.destroy({truncate: true});
     regionsCode.forEach((regionCode: string, i: number) => {
       Region.create({

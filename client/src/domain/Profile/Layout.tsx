@@ -42,10 +42,7 @@ const Layout: React.FC<Props> = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleLoad = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+    !matches ? setLoading(true) : setLoading(false);
   };
 
   useEffect(() => {
@@ -56,8 +53,6 @@ const Layout: React.FC<Props> = () => {
     handleLoad();
   }, [dispatch]);
 
-  console.log("MATCHES", matches)
-  console.log(userRank)
 
   return (
     <Flex

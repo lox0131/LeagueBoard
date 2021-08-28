@@ -32,21 +32,22 @@ const Layout: React.FC<Props> = () => {
   const colors = useColorModeValue("#F0F8FF", "gray.900");
   const pathName = useLocation().pathname;
 
-  const handleLoad = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 6000);
-  };
-  console.log(user)
+  // const handleLoad = () => {
+  //   console.log(typeof user)
+  //   user === undefined ? setLoading(true) : setLoading(false);
+  // };
+  // console.log(user, "user")
 
   useEffect(() => {
+    setLoading(true);
     console.log("Location update");
     getSummoner(
       location.state.formdata.summoner_name,
       location.state.formdata.regionId
-    ).then((res) => setUser(res));
-    handleLoad();
+    ).then((res) => {
+      setUser(res);
+      setLoading(false);
+    })
   }, [location?.state?.formdata?.regionId, location?.state?.formdata?.summoner_name, pathName]);
 
   const matches = user?.matches

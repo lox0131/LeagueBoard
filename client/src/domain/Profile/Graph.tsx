@@ -1,6 +1,5 @@
 import { Flex, Text, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import { CanvasJSChart } from "canvasjs-react-charts";
-import { KDAMatch } from "../../components/Match/KDAMatch";
 
 interface Props {
   matches: any;

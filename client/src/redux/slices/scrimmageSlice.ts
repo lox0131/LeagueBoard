@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IScrimmage } from "../../interfaces/Scrimmages";
+//import { IScrimmage } from "../../interfaces/Scrimmages";
 
 // Creates a thunk which wraps our async calls for redux.
 export const fetchScrimmages = createAsyncThunk(
@@ -22,7 +22,7 @@ export const fetchScrimmageById = createAsyncThunk(
 
 export const createScrimmage = createAsyncThunk(
   "scrimmage/createScrimmage",
-  async (formData: IScrimmage) => await axios
+  async (formData: any) => await axios
   .post(process.env.REACT_APP_BACKEND_URL + "/scrimmage" || "http://localhost:3001/scrimmage", formData)
   .then((res: { data: any }) => res.data)
 );
@@ -74,17 +74,17 @@ export const scrimmageSlice = createSlice({
 
   extraReducers: (builder) => {
 
-    //CREATING
-    builder.addCase(createScrimmage.fulfilled, (state, action,) => {
-      state.scrimmages = [action.payload, ...state.scrimmages];
-    });
-    builder.addCase(createScrimmage.rejected, (state, action: any) => {
-      if (action.payload) {
-        state.error = action.payload.errorMessage;
-      } else {
-        state.error = action.error;
-      }
-    });
+    // //CREATING
+    // builder.addCase(createScrimmage.fulfilled, (state, action,) => {
+    //   state.scrimmages = [action.payload, ...state.scrimmages];
+    // });
+    // builder.addCase(createScrimmage.rejected, (state, action: any) => {
+    //   if (action.payload) {
+    //     state.error = action.payload.errorMessage;
+    //   } else {
+    //     state.error = action.error;
+    //   }
+    // });
 
     //GETTING ONE
     builder.addCase(fetchScrimmageById.fulfilled, (state, { payload }) => {

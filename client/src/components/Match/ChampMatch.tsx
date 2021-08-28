@@ -74,9 +74,9 @@ const ChampMatch: React.FC<Props> = ({
               />
             </Tooltip>
             <Flex flexDirection="column">
-              <Tooltip hasArrow label={`${spell1.name}: ${spell1.description}`}>
+              <Tooltip hasArrow label={`${spell1?.name}: ${spell1?.description}`}>
                 <Image
-                  src={`https://opgg-static.akamaized.net/images/lol/spell/${spell1.id}.png?image=c_scale,q_auto,w_22&v=1628647804`}
+                  src={`https://opgg-static.akamaized.net/images/lol/spell/${spell1?.id}.png?image=c_scale,q_auto,w_22&v=1628647804`}
                   borderRadius="full"
                   marginBottom="3px"
                   alt="Champion"

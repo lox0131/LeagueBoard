@@ -8,7 +8,7 @@
   },
   "main": "dist/server.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "set NODE_ENV=production && tsc-watch -p ./ --onSuccess \"nodemon ./dist/server.js\"",
     "build": "tsc",
     "postinstall": "npm run build"
   },
@@ -24,6 +24,7 @@
   "homepage": "https://github.com/Jchase2/LeagueBoard#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "axios-cache-adapter": "^2.7.3",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

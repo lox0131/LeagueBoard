@@ -8,10 +8,10 @@ export class Scrimmages extends Model {
 
   @Column
   date!: string;
-  
+
   @Column
   time!: string;
-  
+
   @Column
   bestOf!: string;
 
@@ -50,6 +50,9 @@ export class Scrimmages extends Model {
 
   @Column
   player10!: string;
+
+  @Column
+  regionid!: number;
 
   @CreatedAt
   @Column

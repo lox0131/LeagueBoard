@@ -21,6 +21,13 @@ export const getFormattedTime = (fourDigitTime: string) => {
   };
 };
 
+export const getHours = (fourDigitTime: string) => {
+  const hours24 = parseInt(fourDigitTime.substring(0, 2));
+  const hours = ((hours24 + 11) % 12) + 1;
+  const amPm = hours24 > 11 ? "PM" : "AM";
+  return [hours, amPm]
+}
+
 export const millisToMinutesAndSeconds = (millis: number) => {
   const minutes = Math.floor(millis / 60000);
   const seconds: any = ((millis % 60000) / 1000).toFixed(0);

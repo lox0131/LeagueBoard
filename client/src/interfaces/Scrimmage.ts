@@ -1,21 +1,19 @@
 export interface IScrimmage {
-  date: Date,
-  time: TimeRanges,
-  teams: ITeams[],
-}
-interface ITeams {
-  team1: ITeam1,
-  team2: ITeam2
-}
-interface ITeam1 {
-  name: string,
-  players: IPlayer[]
-}
-interface ITeam2 {
-  name: string,
-  players: IPlayer[]
-}
-interface IPlayer {
-  name: string,
-  id: string
+  id: number,
+  userid: number,
+  date: string,
+  time: string,
+  bestOf: string,
+  team1Name: string,
+  team2Name: string,
+  player1: string,
+  player2: string,
+  player3: string,
+  player4: string,
+  player5: string,
+  player6: string,
+  player7: string,
+  player8: string,
+  player9: string,
+  player10: string,
 }
