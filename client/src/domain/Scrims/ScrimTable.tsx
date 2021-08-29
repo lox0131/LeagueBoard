@@ -1,10 +1,10 @@
+import { Divider } from "@chakra-ui/react";
 import { Props } from "framer-motion/types/types";
 import { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 const ScrimTable: React.FC<Props> = ({ scrimData }) => {
-  console.log("SCRIMDATA: ", scrimData);
 
   const [loading, setLoading] = useState(true);
   const [teamNames, setTeamNames] = useState<any[]>([]);
@@ -23,37 +23,35 @@ const ScrimTable: React.FC<Props> = ({ scrimData }) => {
           localTeamRanks.push(value);
         }
       }
-      console.log(localTeamRanks);
       setTeamNames([...localTeam]);
       setTeamRanks([...localTeamRanks]);
     }
   }, [scrimData]);
 
   const renderTable = () => {
-    console.log("TEAMRANKS: ", teamRanks)
    return teamNames.map((member, i) => {
       return (
-        <Tr>
+        <Tr align="center">
           <Td>{member.name}</Td>
-          <Td>{teamRanks[i][0] ? teamRanks[i][0].rank : "Unranked"}</Td>
-          <Td>{teamRanks[i][0] ? teamRanks[i][0].tier : "Unranked"}</Td>
-          <Td>{teamRanks[i][0] ? (teamRanks[i][0].wins / teamRanks[i][0].losses).toFixed(2) : "Unranked"}</Td>
+          <Td>{teamRanks[i][0] ? teamRanks[i][0].rank : "Unavailable"}</Td>
+          <Td>{member.summonerLevel}</Td>
+          <Td>{teamRanks[i][0] ? teamRanks[i][0].tier : "Unavailable"}</Td>
+          <Td>{teamRanks[i][0] ? (teamRanks[i][0].wins / teamRanks[i][0].losses).toFixed(2) : "Unavailable"}</Td>
         </Tr>
       );
     });
   };
 
-  console.log(teamRanks, "team1names");
-
   if (!loading) {
     return (
       <Table>
-        <Thead align="left">
+        <Thead align="center">
           <Tr>
-            <Th>Summoner</Th>
-            <Th>Rank</Th>
-            <Th>Tier</Th>
-            <Th>Win/Loss</Th>
+            <Th>Summoner <Divider /></Th>
+            <Th>Rank <Divider /></Th>
+            <Th>Level <Divider /></Th>
+            <Th>Tier <Divider /></Th>
+            <Th>Win/Loss <Divider /></Th>
           </Tr>
         </Thead>
         <Tbody>

@@ -36,7 +36,7 @@ var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'S
             <NewSearchBar  />
             </Flex>
              <Flex  flexDirection="column">
-            {scrims?.map(scrim =>{
+            {scrims && scrims?.map(scrim =>{
             let d = new Date(scrim?.date)
             let dayName = days[d.getDay()]
             let dates = (d.toString().slice(4,10))
