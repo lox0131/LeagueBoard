@@ -1,7 +1,6 @@
 import { Props } from "framer-motion/types/types";
 import { Box, Flex, Heading, useColorModeValue, useMediaQuery } from "@chakra-ui/react";
 import ScrimTable from "./ScrimTable";
-import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useParams } from "react-router";
 import { useEffect } from "react";
@@ -13,9 +12,8 @@ type urlParams = {
 
 const ScrimCard: React.FC<Props> = ({ scrim }) => {
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
-  const loseColor = useColorModeValue("red.200", "red.900");
-  const winColor = useColorModeValue("blue.200", "blue.900");
-  const [winner, setWinner] = useState<boolean>(false);
+  const red = useColorModeValue("red.200", "red.900");
+  const blue = useColorModeValue("blue.200", "blue.900");
   const scrims:any = useAppSelector((state) => state.scrimmageSlice.scrimmages);
 
   const { id } = useParams<urlParams>();
@@ -39,7 +37,7 @@ const ScrimCard: React.FC<Props> = ({ scrim }) => {
       >
         <Box
           width={isLargerThan800 ? "40%" : "70%"}
-          backgroundColor={winColor}
+          backgroundColor={blue}
           pl={1}
           mt={1}
           pt={1}
@@ -49,7 +47,7 @@ const ScrimCard: React.FC<Props> = ({ scrim }) => {
         </Box>
         <Box
           width={isLargerThan800 ? "40%" : "70%"}
-          backgroundColor={winner ? winColor : loseColor}
+          backgroundColor={red}
           ml={2}
           mt={1}
           pl={1}

@@ -2,7 +2,6 @@ import { Props } from "framer-motion/types/types";
 import { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
-import { getUserNameBySummonerName } from "../../api/friendApi";
 
 const ScrimTable: React.FC<Props> = ({ scrimData }) => {
   console.log("SCRIMDATA: ", scrimData);
