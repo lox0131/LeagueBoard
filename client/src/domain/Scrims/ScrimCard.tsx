@@ -39,13 +39,13 @@ const ScrimCard: React.FC<Props> = ({ scrim }) => {
       >
         <Box
           width={isLargerThan800 ? "40%" : "70%"}
-          backgroundColor={winner ? winColor : loseColor}
+          backgroundColor={winColor}
           pl={1}
           mt={1}
           pt={1}
           rounded="md"
         >
-          {scrims && <ScrimTable scrimData={scrims} />}
+          {scrims && <ScrimTable scrimData={scrims.team1data} />}
         </Box>
         <Box
           width={isLargerThan800 ? "40%" : "70%"}
@@ -56,7 +56,7 @@ const ScrimCard: React.FC<Props> = ({ scrim }) => {
           pt={1}
           rounded="md"
         >
-          {scrims && <ScrimTable scrimData={scrims} />}
+          {scrims && <ScrimTable scrimData={scrims.team2data}/>}
         </Box>
       </Flex>
     </>

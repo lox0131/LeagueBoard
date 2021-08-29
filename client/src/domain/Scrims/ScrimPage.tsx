@@ -28,7 +28,6 @@ const ScrimPage: React.FC<Props> = () => {
 
 var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-
     return (
         <>
         <Flex w="100%" alignItems="center" justifyContent="center" flexDirection="column" padding="10px">

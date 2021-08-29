@@ -67,10 +67,33 @@ export const getScrimmage = async (
       WHERE S.id = ${id}`);
 
     scrimmages = scrimmages[0][0];
+    console.log("TYPEOF ", typeof scrimmages);
+    let team1obj: any = {};
+    let team2obj: any = {};
+    for (const [key, value] of Object.entries(scrimmages)) {
+      if (
+        (key.includes("player") || key.includes("puuid")) &&
+        Number(key.slice(-1)) <= 5 &&
+        Number(key.slice(-1)) !== 0
+      ) {
+        team1obj[key] = value;
+        delete scrimmages[key];
+      } else if (
+        (key.includes("player") || key.includes("puuid")) &&
+        (Number(key.slice(-1)) > 5 || Number(key.slice(-2)) === 10)
+      ) {
+        team2obj[key] = value;
+        delete scrimmages[key];
+      }
+    }
+    scrimmages.team1data = team1obj;
+    scrimmages.team2data = team2obj;
+
+    console.log("SCRIMMAGES: ", scrimmages);
 
     console.time("time");
     await retrieveAndSetRankInfoOfPlayers(scrimmages);
-    console.timeEnd("time");
+    console.timeEnd("timeend");
 
     res.json(scrimmages).status(200);
   } catch (err) {
@@ -131,107 +154,129 @@ export const postScrimmage = async (
 };
 
 const retrieveAndSetRankInfoOfPlayers = async (scrimmages: any) => {
-  let err = false;
-  let errMessage: string = "";
-
-  if ((err = true)) {
-    return errMessage;
-  }
 
   try {
-    //player1
-    let player = await getSummonerByPuuid(scrimmages.puuid1, scrimmages.region);
-    console.log(player, "PLAYER")
-    scrimmages.player1info = player;
-    let ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player1ranked = ranked.data;
+  //player1
+  let player = await getSummonerByPuuid(
+    scrimmages.team1data.puuid1,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerinfo1 = player;
+  let ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerranked1 = ranked.data;
 
-    //player2
-    player = await getSummonerByPuuid(scrimmages.puuid2, scrimmages.region);
-    scrimmages.player2info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player2ranked = ranked.data;
+  //player2
+  player = await getSummonerByPuuid(
+    scrimmages.team1data.puuid2,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerinfo2 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerranked2 = ranked.data;
 
-    //player3
-    player = await getSummonerByPuuid(scrimmages.puuid3, scrimmages.region);
-    scrimmages.player3info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player3ranked = ranked.data;
+  //player3
+  player = await getSummonerByPuuid(
+    scrimmages.team1data.puuid3,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerinfo3 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerranked3 = ranked.data;
 
-    //player4
-    player = await getSummonerByPuuid(scrimmages.puuid4, scrimmages.region);
-    scrimmages.player4info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player4ranked = ranked.data;
+  //player4
+  player = await getSummonerByPuuid(
+    scrimmages.team1data.puuid4,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerinfo4 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerranked4 = ranked.data;
 
-    //player5
-    player = await getSummonerByPuuid(scrimmages.puuid5, scrimmages.region);
-    scrimmages.player5info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player5ranked = ranked.data;
+  //player5
+  player = await getSummonerByPuuid(
+    scrimmages.team1data.puuid5,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerinfo5 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team1data.playerranked5 = ranked.data;
 
-    //player6
-    player = await getSummonerByPuuid(scrimmages.puuid6, scrimmages.region);
-    scrimmages.player6info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player6ranked = ranked.data;
+  //player6
+  player = await getSummonerByPuuid(
+    scrimmages.team2data.puuid6,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerinfo6 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerranked6 = ranked.data;
 
-    //player7
-    player = await getSummonerByPuuid(scrimmages.puuid7, scrimmages.region);
-    scrimmages.player7info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player7ranked = ranked.data;
+  //player7
+  player = await getSummonerByPuuid(
+    scrimmages.team2data.puuid7,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerinfo7 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerranked7 = ranked.data;
 
-    //player8
-    player = await getSummonerByPuuid(scrimmages.puuid8, scrimmages.region);
-    scrimmages.player8info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player8ranked = ranked.data;
+  //player8
+  player = await getSummonerByPuuid(
+    scrimmages.team2data.puuid8,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerinfo8 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerranked8 = ranked.data;
 
-    //player9
-    player = await getSummonerByPuuid(scrimmages.puuid9, scrimmages.region);
-    scrimmages.player9info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player9ranked = ranked.data;
+  //player9
+  player = await getSummonerByPuuid(
+    scrimmages.team2data.puuid9,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerinfo9 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerranked9 = ranked.data;
 
-    //player10
-    player = await getSummonerByPuuid(scrimmages.puuid10, scrimmages.region);
-    scrimmages.player10info = player;
-    ranked = await getSummonerEntriesByAccountIdAndRegion(
-      player.id,
-      scrimmages.region
-    );
-    scrimmages.player10ranked = ranked.data;
-  } catch (err) {
-    console.log(err.message);
-    err = true;
-    errMessage = err.message;
+  //player10
+  player = await getSummonerByPuuid(
+    scrimmages.team2data.puuid10,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerinfo10 = player;
+  ranked = await getSummonerEntriesByAccountIdAndRegion(
+    player.id,
+    scrimmages.region
+  );
+  scrimmages.team2data.playerranked10 = ranked.data;
+  }catch(err){
+    console.log("ERROR: ", err);
+    return err;
   }
 };
