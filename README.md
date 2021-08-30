@@ -12,6 +12,20 @@ This project idea is to replace the form section on the League of legends websit
 
 * Only required to install all dependencies
 
+### Tech Stack: Front-End
+* React
+* Charka UI
+* JWT
+* TypeScript
+* Canvas.JS
+
+### Tech Stack: Back-End
+* Express
+* Postgres/SQL
+* Node.JS
+* TypeScript
+
+
 ### Executing program
 
 * How to run the program
@@ -28,19 +42,6 @@ cd server
 npm i 
 npm start
 ```
-### Tech Stack: Front-End
-* React
-* Charka UI
-* JWT
-* TypeScript
-* Canvas.JS
-
-### Tech Stack: Back-End
-* Express
-* Postgres/SQL
-* Node.JS
-* TypeScript
-
 
 
 ## Acknowledgments
