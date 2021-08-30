@@ -47,49 +47,59 @@ const ScrimCard: React.FC<Props> = ({ scrim }) => {
       }
     }
 
-    const localTeam1Wins = localTeam1Ranks.map((rankArr) => {
+
+    let localTeam1Wins: any[] = [1];
+    localTeam1Wins = localTeam1Ranks.map((rankArr) => {
       if (rankArr && rankArr[0]) {
         return rankArr[0].wins;
       }
+      return [0];
     });
-    const localTeam1Losses = localTeam1Ranks.map((rankArr) => {
+    let localTeam1Losses: any[] = [0];
+    localTeam1Losses = localTeam1Ranks.map((rankArr) => {
       if (rankArr[0]) {
         return rankArr[0].losses;
       }
+      return [0];
     });
-    const localTeam2Wins = localTeam2Ranks.map((rankArr) => {
+    let localTeam2Wins: any[] = [0];
+    localTeam2Wins = localTeam2Ranks.map((rankArr) => {
       if (rankArr[0]) {
         return rankArr[0].wins;
       }
+      return [0];
     });
-    const localTeam2Losses = localTeam2Ranks.map((rankArr) => {
+    let localTeam2Losses: any[] = [0];
+    localTeam2Losses = localTeam2Ranks.map((rankArr) => {
       if (rankArr[0]) {
         return rankArr[0].losses;
       }
+      return [0];
     });
 
     const total1Wins = localTeam1Wins.reduce(
-      (accumulator, currentValue) => accumulator + currentValue
+      (accumulator, currentValue) => accumulator + currentValue, 0
     );
     const total1Losses = localTeam1Losses.reduce(
-      (accumulator, currentValue) => accumulator + currentValue
+      (accumulator, currentValue) => accumulator + currentValue, 0
     );
     const total2Wins = localTeam2Wins.reduce(
-      (accumulator, currentValue) => accumulator + currentValue
+      (accumulator, currentValue) => accumulator + currentValue, 0
     );
     const total2Losses = localTeam2Losses.reduce(
-      (accumulator, currentValue) => accumulator + currentValue
+      (accumulator, currentValue) => accumulator + currentValue, 0
     );
     const prediction =
       total1Wins / total1Losses > total2Wins / total2Losses ? 1 : 2;
 
-      console.log("PREDICTION: ", prediction)
     setWinner(prediction);
   };
 
   useEffect(() => {
-    dispatch(fetchScrimmageById(+id));
-    winPrediction();
+    dispatch(fetchScrimmageById(+id)).then(() => {
+      winPrediction();
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, id]);
 
   return (
