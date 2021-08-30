@@ -28,6 +28,18 @@ cd server
 npm i 
 npm start
 ```
+### Tech Stack: Front-End
+* React
+* Charka UI
+* JWT
+* TypeScript
+* Canvas.JS
+
+### Tech Stack: Back-End
+* Express
+* Postgres/SQL
+* Node.JS
+* TypeScript
 
 
 
